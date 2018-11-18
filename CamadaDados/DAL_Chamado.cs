@@ -90,7 +90,6 @@ namespace CamadaDados
                 conexao.Comando.Parameters.AddWithValue("@fkStatus", vChamado.Status.idStatus);
                 conexao.Comando.Parameters.AddWithValue("@fkUsuarioSolicitante", vChamado.usuarioSolicitante.idUsuario);
                 conexao.Comando.Parameters.AddWithValue("@fkUsuarioAtendeu", vChamado.usuarioAtendimento.idUsuario);
-                conexao.Comando.Parameters.AddWithValue("@fkStatus", vChamado.Status.idStatus);
                 conexao.Comando.Parameters.AddWithValue("@fkNivel", vChamado.Nivel.idNivel);
                 conexao.Comando.Parameters.AddWithValue("@fkTipo", vChamado.Tipo.idTipo);
 
