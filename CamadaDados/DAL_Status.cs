@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 using CamadaModelo;
+using System.Data.SqlClient;
 
 namespace CamadaDados
 {
-    public class DAL_Nivel
+    public class DAL_Status
     {
         public string strConexao { get; set; }
 
-        public DAL_Nivel(string strConexao)
+        public DAL_Status(string strConexao)
         {
             this.strConexao = strConexao;
         }
+            
 
-        public bool CadastrarNivel(Nivel nivel)
+        public bool CadastrarStatus(Status status)
         {
             using (ConexaoBD conexao = new ConexaoBD(this.strConexao))
             {
-                conexao.Comando.CommandText = "dbo.pr_ManterNivel ";
+                conexao.Comando.CommandText = "dbo.pr_ManterStatus ";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 1);
-                conexao.Comando.Parameters.AddWithValue("@nomeNivel", nivel.nomeNivel);
-                conexao.Comando.Parameters.AddWithValue("@peso", nivel.peso);
+                conexao.Comando.Parameters.AddWithValue("@nomeStatus", status.nomeStatus);
                 if (conexao.ExecuteNonQuery() == 1)
                     return true;
                 else
@@ -32,15 +32,14 @@ namespace CamadaDados
             }
         }
 
-        public bool AlterarNivel(Nivel nivel)
+        public bool AlterarStatus(Status status)
         {
             using (ConexaoBD conexao = new ConexaoBD(this.strConexao))
             {
-                conexao.Comando.CommandText = "dbo.pr_ManterNivel ";
+                conexao.Comando.CommandText = "dbo.pr_ManterStatus ";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 2);
-                conexao.Comando.Parameters.AddWithValue("@nomeNivel", nivel.nomeNivel);
-                conexao.Comando.Parameters.AddWithValue("@peso", nivel.peso);
-                conexao.Comando.Parameters.AddWithValue("@idNivel", nivel.idNivel);
+                conexao.Comando.Parameters.AddWithValue("@nomeStatus", status.nomeStatus);
+                conexao.Comando.Parameters.AddWithValue("@idStatus", status.idStatus);
 
                 if (conexao.ExecuteNonQuery() == 1)
                     return true;
@@ -49,13 +48,13 @@ namespace CamadaDados
             }
         }
 
-        public bool DeletarNivel(Nivel nivel)
+        public bool DeletarStatus(Status status)
         {
             using (ConexaoBD conexao = new ConexaoBD(this.strConexao))
             {
-                conexao.Comando.CommandText = "dbo.pr_ManterNivel ";
+                conexao.Comando.CommandText = "dbo.pr_ManterStatus ";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 3);
-                conexao.Comando.Parameters.AddWithValue("@idNivel", nivel.idNivel);
+                conexao.Comando.Parameters.AddWithValue("@idStatus", status.idStatus);
                 if (conexao.ExecuteNonQuery() == 1)
                     return true;
                 else
@@ -63,19 +62,19 @@ namespace CamadaDados
             }
         }
 
-        public List<Nivel> ListarNivel(Nivel nivel)
+        public List<Status> ListarStatus(Status status)
         {
             using (ConexaoBD conexao = new ConexaoBD(this.strConexao))
             {
-                conexao.Comando.CommandText = "dbo.pr_ManterNivel ";
+                conexao.Comando.CommandText = "dbo.pr_ManterStatus ";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 4);
-                conexao.Comando.Parameters.AddWithValue("@idNivel", nivel.idNivel);
+                conexao.Comando.Parameters.AddWithValue("@idStatus", status.idStatus);
 
-                List<Nivel> lista = new List<Nivel>();
+                List<Status> lista = new List<Status>();
                 SqlDataReader reader = conexao.ExecuteReader();
                 while (reader.Read())
                 {
-                    lista.Add(new Nivel(reader));
+                    lista.Add(new Status(reader));
                 }
 
                 return lista;

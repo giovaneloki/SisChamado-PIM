@@ -44,8 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL_Chamado.cs" />
     <Compile Include="DAL_Nivel.cs" />
     <Compile Include="DAL_Perfil.cs" />
+    <Compile Include="DAL_Status.cs" />
+    <Compile Include="DAL_Tipo.cs" />
+    <Compile Include="DAL_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

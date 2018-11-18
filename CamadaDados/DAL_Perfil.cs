@@ -31,7 +31,7 @@ namespace CamadaDados
             }
         }
 
-        public bool AlterarNivel(Perfil perfil)
+        public bool AlterarPerfil(Perfil perfil)
         {
             using (ConexaoBD conexao = new ConexaoBD(this.strConexao))
             {
@@ -47,7 +47,7 @@ namespace CamadaDados
             }
         }
 
-        public bool DeletarNivel(Perfil perfil)
+        public bool DeletarPerfil(Perfil perfil)
         {
             using (ConexaoBD conexao = new ConexaoBD(this.strConexao))
             {
@@ -61,19 +61,19 @@ namespace CamadaDados
             }
         }
 
-        public List<Nivel> ListarPerfil(Perfil perfil)
+        public List<Perfil> ListarPerfil(Perfil perfil)
         {
             using (ConexaoBD conexao = new ConexaoBD(this.strConexao))
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterPerfil ";
-                conexao.Comando.Parameters.AddWithValue("@Funcao", 3);
+                conexao.Comando.Parameters.AddWithValue("@Funcao", 4);
                 conexao.Comando.Parameters.AddWithValue("@idPerfil", perfil.idPerfil);
 
-                List<Nivel> lista = new List<Nivel>();
+                List<Perfil> lista = new List<Perfil>();
                 SqlDataReader reader = conexao.ExecuteReader();
                 while (reader.Read())
                 {
-                    lista.Add(new Nivel(reader));
+                    lista.Add(new Perfil(reader));
                 }
 
                 return lista;
