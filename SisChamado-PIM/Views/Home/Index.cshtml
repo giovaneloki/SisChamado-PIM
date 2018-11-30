@@ -1,31 +1,60 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<script>
+    $(document).ready(function () {
+        var usuarioLogado = "@Session["usuarioLogado"]";
+        if (usuarioLogado == "")
+            $("#btnModalLogin").click();
+        else {
+            $("#conteudo").load("../Home/Redirecionar");
+        }
+    })
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    function Logar() {
+        if ($("#txtLogin").val() == "" || $("#txtSenha").val() == "") {
+            alert("Login e Senha são obrigatórios!");
+        } else {
+            $("#fecharLogin").click();
+            $("#conteudo").load("../Home/Logar?login=" + $("#txtLogin").val() + "&senha=" + $("#txtSenha").val());
+        }
+    }
+</script>
+
+<div id="conteudo">
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+<button id="btnModalLogin" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalLogin" style="display:none;">Open Modal</button>
+
+<!-- Modal -->
+<div id="modalLogin" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>Login</label>
+                        <input type="text" class="form-control" id="txtLogin" />
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>Senha</label>
+                        <input type="password" class="form-control" id="txtSenha" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-6" style="padding-left:73%">
+                        <button class="btn btn-primary" onclick="Logar()">Logar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="fecharLogin" style="display:none;" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
     </div>
 </div>

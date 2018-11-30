@@ -23,6 +23,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterTipo ";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 1);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@nomeTipo", tipo.nomeTipo);
                 if (conexao.ExecuteNonQuery() == 1)
                     return true;
@@ -37,6 +38,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterTipo";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 2);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@nomeTipo", tipo.nomeTipo);
                 conexao.Comando.Parameters.AddWithValue("@idTipo", tipo.idTipo);
 
@@ -53,6 +55,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterTipo";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 3);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@idTipo", tipo.idTipo);
                 if (conexao.ExecuteNonQuery() == 1)
                     return true;
@@ -67,6 +70,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterTipo";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 4);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@idTipo", tipo.idTipo);
 
                 List<Tipo> lista = new List<Tipo>();

@@ -23,6 +23,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterNivel ";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 1);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@nomeNivel", nivel.nomeNivel);
                 conexao.Comando.Parameters.AddWithValue("@peso", nivel.peso);
                 if (conexao.ExecuteNonQuery() == 1)
@@ -38,6 +39,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterNivel ";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 2);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@nomeNivel", nivel.nomeNivel);
                 conexao.Comando.Parameters.AddWithValue("@peso", nivel.peso);
                 conexao.Comando.Parameters.AddWithValue("@idNivel", nivel.idNivel);
@@ -55,6 +57,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterNivel ";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 3);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@idNivel", nivel.idNivel);
                 if (conexao.ExecuteNonQuery() == 1)
                     return true;
@@ -69,6 +72,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterNivel ";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 4);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@idNivel", nivel.idNivel);
 
                 List<Nivel> lista = new List<Nivel>();

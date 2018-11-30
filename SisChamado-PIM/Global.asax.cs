@@ -10,6 +10,8 @@ namespace SisChamado_PIM
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        public static string strConexao = "Data Source=giovane-PC;Initial Catalog=DB_PIM;Integrated Security=True";
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

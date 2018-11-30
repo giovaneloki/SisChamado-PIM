@@ -23,6 +23,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterChamado";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 1);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@dataSolicitada", chamado.dataSolicitada == DateTime.MinValue ? null : chamado.dataSolicitada.ToString("u").Replace("Z", ""));
                 conexao.Comando.Parameters.AddWithValue("@dataInicio", chamado.dataInicio == DateTime.MinValue ? null : chamado.dataInicio.ToString("u").Replace("Z", ""));
                 conexao.Comando.Parameters.AddWithValue("@dataTermino", chamado.dataTermino == DateTime.MinValue ? null : chamado.dataTermino.ToString("u").Replace("Z", ""));
@@ -47,6 +48,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterChamado";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 2);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@dataSolicitada", chamado.dataSolicitada == DateTime.MinValue ? null : chamado.dataSolicitada.ToString("u").Replace("Z", ""));
                 conexao.Comando.Parameters.AddWithValue("@dataInicio", chamado.dataInicio == DateTime.MinValue ? null : chamado.dataInicio.ToString("u").Replace("Z", ""));
                 conexao.Comando.Parameters.AddWithValue("@dataTermino", chamado.dataTermino == DateTime.MinValue ? null : chamado.dataTermino.ToString("u").Replace("Z", ""));
@@ -72,6 +74,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterChamado";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 3);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@idChamado", chamado.idChamado);
 
                 if (conexao.ExecuteNonQuery() == 1)
@@ -87,6 +90,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterChamado";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 4);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@fkStatus", vChamado.Status.idStatus);
                 conexao.Comando.Parameters.AddWithValue("@fkUsuarioSolicitante", vChamado.usuarioSolicitante.idUsuario);
                 conexao.Comando.Parameters.AddWithValue("@fkUsuarioAtendeu", vChamado.usuarioAtendimento.idUsuario);
@@ -109,13 +113,14 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterChamado";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 5);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@idChamado", vChamado.idChamado);
 
                 Chamado obChamado = new Chamado();
                 var reader = conexao.ExecuteReader();
                 while (reader.Read())
                 {
-                    obChamado = new Chamado(reader));
+                    obChamado = new Chamado(reader);
                 }
                 return obChamado;
             }

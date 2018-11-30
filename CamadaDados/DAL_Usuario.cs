@@ -23,6 +23,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterUsuario";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 1);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@nomeUsuario", usuario.nomeUsuario);
                 conexao.Comando.Parameters.AddWithValue("@loginUsuario", usuario.loginUsuario);
                 conexao.Comando.Parameters.AddWithValue("@senhaUsuario", usuario.senhaUsuario);
@@ -41,6 +42,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterUsuario";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 2);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@nomeUsuario", usuario.nomeUsuario);
                 conexao.Comando.Parameters.AddWithValue("@loginUsuario", usuario.loginUsuario);
                 conexao.Comando.Parameters.AddWithValue("@senhaUsuario", usuario.senhaUsuario);
@@ -61,6 +63,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterUsuario";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 3);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@idUsuario", usuario.idUsuario);
 
                 if (conexao.ExecuteNonQuery() == 1)
@@ -78,6 +81,7 @@ namespace CamadaDados
 
                 conexao.Comando.CommandText = "dbo.pr_ManterUsuario";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 4);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@nomeUsuario", usuario.nomeUsuario);
                 conexao.Comando.Parameters.AddWithValue("@loginUsuario", usuario.loginUsuario);
                 conexao.Comando.Parameters.AddWithValue("@idPerfil", usuario.Perfil.idPerfil);
@@ -98,6 +102,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterUsuario";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 5);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@senhaUsuario", usuario.senhaUsuario);
                 conexao.Comando.Parameters.AddWithValue("@loginUsuario", usuario.loginUsuario);
 
@@ -117,6 +122,7 @@ namespace CamadaDados
             {
                 conexao.Comando.CommandText = "dbo.pr_ManterUsuario";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 6);
+                conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@idUsuario", usuario.idUsuario);
                 conexao.Comando.Parameters.AddWithValue("@loginUsuario", usuario.loginUsuario);
 
