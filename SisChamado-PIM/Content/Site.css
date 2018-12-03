@@ -22,3 +22,31 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.funcoes {
+    position: absolute;
+    left: -25px;
+    top:70px;
+}
+
+    .funcoes button {
+        width: 140px;
+        text-align:left;
+    }
+
+    .funcoes ul {
+        list-style: none;
+    }
+
+        .funcoes ul li {
+            padding-bottom:5px;
+            text-decoration: none;
+        }
+
+
+.conteudo{
+    position:absolute;
+    left:195px;
+    top:97px;
+}

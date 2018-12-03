@@ -9,7 +9,7 @@ namespace CamadaModelo
 {
     public class Tipo
     {
-        public int idTipo { get; set; }
+        public int? idTipo { get; set; }
         public string nomeTipo { get; set; }
 
         public Tipo()

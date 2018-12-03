@@ -9,7 +9,7 @@ namespace CamadaModelo
 {
     public class Perfil
     {
-        public int idPerfil { get; set; }
+        public int? idPerfil { get; set; }
         public string nomePerfil { get; set; }
 
         public Perfil()

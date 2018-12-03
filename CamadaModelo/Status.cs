@@ -9,7 +9,7 @@ namespace CamadaModelo
 {
     public class Status
     {
-        public int idStatus { get; set; }
+        public int? idStatus { get; set; }
         public string nomeStatus { get; set; }
         public bool finalizador { get; set; }
 

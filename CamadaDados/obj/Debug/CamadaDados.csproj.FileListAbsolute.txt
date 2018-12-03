@@ -1,9 +1,9 @@
 C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\bin\Debug\CamadaDados.dll
 C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\bin\Debug\CamadaDados.pdb
-C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\obj\Debug\CamadaDados.csprojAssemblyReference.cache
 C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\obj\Debug\CamadaDados.csproj.CoreCompileInputs.cache
 C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\obj\Debug\CamadaDados.dll
 C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\obj\Debug\CamadaDados.pdb
 C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\bin\Debug\CamadaModelo.dll
 C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\bin\Debug\CamadaModelo.pdb
 C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\obj\Debug\CamadaDados.csproj.CopyComplete
+C:\Users\giovane\source\repos\SisChamado-PIM\SisChamado-PIM\CamadaDados\obj\Debug\CamadaDados.csprojAssemblyReference.cache

@@ -26,8 +26,12 @@ namespace CamadaModelo
         public Chamado()
         {
 
+            usuarioSolicitante = new Usuario();
+            usuarioAtendimento = new Usuario();
+            Nivel = new Nivel();
+            Tipo = new Tipo();
+            Status = new Status();
         }
-
         public Chamado(SqlDataReader reader)
         {
             idChamado = reader["idChamado"] == DBNull.Value ? 0 : Convert.ToInt16(reader["idChamdo"]);

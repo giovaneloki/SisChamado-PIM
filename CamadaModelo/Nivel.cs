@@ -9,7 +9,7 @@ namespace CamadaModelo
 {
     public class Nivel
     {
-        public int idNivel { get; set; }
+        public int? idNivel { get; set; }
         public string nomeNivel { get; set; }
         public int peso { get; set; }
 

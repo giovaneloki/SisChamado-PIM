@@ -3,6 +3,142 @@
     ViewBag.Title = "Tecnico";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/datatables.min.js"></script>
+<link href="~/Content/datatables.min.css" rel="stylesheet" />
 
-<h2>Tecnico</h2>
 
+<div class="container">
+    <div class="funcoes">
+        <ul>
+            <li>
+                <button class="btn btn-primary" onclick="Usuario()">
+                    <span class="glyphicon glyphicon-plus-sign"><font style="font-family:Verdana; word-spacing:1px;">&nbsp;Novo Usuário</font></span>
+                </button>
+            </li>
+            <li>
+                <button class="btn btn-primary" onclick="Perfil()">
+                    <span class="glyphicon glyphicon-plus-sign"><font style="font-family:Verdana; word-spacing:1px;">&nbsp;Novo Perfil</font></span>
+                </button>
+            </li>
+            <li>
+                <button class="btn btn-primary" onclick="Nivel()">
+                    <span class="glyphicon glyphicon-plus-sign"><font style="font-family:Verdana; word-spacing:1px;">&nbsp;Novo Nivel</font></span>
+                </button>
+            </li>
+            <li>
+                <button class="btn btn-primary" onclick="Status()">
+                    <span class="glyphicon glyphicon-plus-sign"><font style="font-family:Verdana; word-spacing:1px;">&nbsp;Novo Status</font></span>
+                </button>
+            </li>
+            <li>
+                <button class="btn btn-primary" onclick="Tipo()">
+                    <span class="glyphicon glyphicon-plus-sign"><font style="font-family:Verdana; word-spacing:1px;">&nbsp;Novo Tipo</font></span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="conteudo">
+
+    </div>
+</div>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="btnModal" style="display:none;">Open Modal</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog" >
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    function Usuario() {
+        $(".modal-title").html("Usuários");
+        $(".modal-body").load("../Usuario/Index");
+        $("#btnModal").click();
+    }
+    function Perfil() {
+        $(".modal-title").html("Perfil");
+        $(".modal-body").load("../Perfil/Index");
+        $("#btnModal").click();
+    }
+    function Nivel() {
+        $(".modal-title").html("Nivel");
+        $(".modal-body").load("../Nivel/Index");
+        $("#btnModal").click();
+    }
+    function Status() {
+        $(".modal-title").html("Status");
+        $(".modal-body").load("../Status/Index");
+        $("#btnModal").click();
+    }
+    function Tipo() {
+        $(".modal-title").html("Tipo");
+        $(".modal-body").load("../Tipo/Index");
+        $("#btnModal").click();
+    }
+
+    $(document).ready(function () {
+        ListarChamadosAbertos();
+    })
+
+    function ListarChamadosAbertos() {
+        $.ajax({
+            url: "../Chamado/ListarChamadosAbertos",
+            type: "POST",
+            async: false,
+            success: function (data) {
+                var html = "<h4>Chamados Abertos</h4>";
+                html += "<table id='tbChamado'>";
+                html += "<tr>";
+                html += "<thead>";
+                html += "<th>Id Chamado</th>";
+                html += "<th>Aberto em</th>";
+                html += "<th>Inicio Atendimento</th>";
+                html += "<th>Fim Atendimento</th>";
+                html += "<th>Aberto Por</th>";
+                html += "<th>Atendido Por</th>";
+                html += "<th>Tipo</th>";
+                html += "<th>Nível</th>";
+                html += "<th>Status</th>";
+                html += "<th>Desc. Problema</th>";
+                html += "<th>Desc. Solução</th>";
+                html += "</tr>";
+                html += "</thead>";
+                html += "<tbody>";
+
+                $(data).each(function (i) {
+                    html += "<tr>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "<td>" + data[i] + "</td>";
+                    html += "</tr>";
+                });
+                html += "</tbody>";
+                html += "</table>";
+                $(".conteudo").html(html);
+            }
+        });
+
+        $("#tbChamado").DataTable();
+    }
+</script>
