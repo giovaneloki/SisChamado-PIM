@@ -2,16 +2,44 @@
 @{
     Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link href="~/Content/datatables.min.css" rel="stylesheet" />
+<script src="~/Scripts/datatables.min.js"></script>
+<div>
+    <button class="btn btn-primary">
+        <span class="glyphicon glyphicon-list"><font style="font-family:Verdana; word-spacing:1px;">&nbsp;Listar Perfis</font></span>
+    </button>
+    <br />
+    <br />
+    <div>
+        <table class="table table-condensed" id="tbPerfil">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome Perfil</th>
+                    <th>Ações</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.idPerfil</td>
+                        <td>@item.nomePerfil</td>
+                        <td><button class="btn btn-primary" title="Atualizar"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                        <td><button class="btn btn-primary" title="Excluir"><span class="glyphicon glyphicon-trash"></span></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-</body>
-</html>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#tbPerfil").DataTable();
+    });
+</script>
