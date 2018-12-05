@@ -2,16 +2,79 @@
 @{
     Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link href="~/Content/datatables.min.css" rel="stylesheet" />
+<script src="~/Scripts/datatables.min.js"></script>
+<div class="divUsuario">
+    <button class="btn btn-primary" id="btnUsuario">
+        <span class="glyphicon glyphicon-plus"><font style="font-family:Verdana; word-spacing:1px;">&nbsp;Novo Usuario</font></span>
+    </button>
+    <br />
+    <br />
+    <div>
+        <table class="table table-condensed" id="tbUsuario">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome Usuario</th>
+                    <th>Perfil</th>
+                    <th>Login</th>
+                    <th>Ativo?</th>
+                    <th>Ações</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    string flAtivo = "";
+                    if (item.FlAtivo)
+                    {
+                        flAtivo = "Sim";
+                    }
+                    else
+                    {
+                        flAtivo = "Não";
+                    }
+                <tr>
+                    <td>@item.idUsuario</td>
+                    <td>@item.nomeUsuario</td>
+                    <td>@item.Perfil.nomePerfil</td>
+                    <td>@item.loginUsuario</td>
+                    <td>@flAtivo</td>
+                    <td><button class="btn btn-primary" title="Atualizar" onclick="AlterarUsuario(@item.idUsuario)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    <td><button class="btn btn-primary" title="Excluir" onclick="RemoverUsuario(@item.idUsuario)"><span class="glyphicon glyphicon-trash"></span></button></td>
+                </tr>
+                }
+            </tbody>
+        </table>
     </div>
-</body>
-</html>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#tbUsuario").DataTable();
+    });
+
+    $("#btnUsuario").click(function () {
+        $(".divUsuario").load("../Usuario/Add");
+    })
+
+    function RemoverUsuario(idUsuario) {
+        $.post("../Usuario/Delete", { idUsuario: idUsuario }, function (data) {
+            if (data == "True") {
+                alert("Usuario Desativado");
+                $("#btnModal").click();
+                location.reload();
+            } else {
+                alert("Erro ao Desativar");
+            }
+        });
+    }
+
+    function AlterarUsuario(idUsuario) {
+        $(".divUsuario").load("../Usuario/Edit?idUsuario=" + idUsuario);
+    }
+</script>

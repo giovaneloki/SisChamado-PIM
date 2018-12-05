@@ -26,6 +26,7 @@ namespace CamadaDados
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 1);
                 conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@nomeStatus", status.nomeStatus);
+                conexao.Comando.Parameters.AddWithValue("@Finalizador", status.finalizador);
                 if (conexao.ExecuteNonQuery() == 1)
                     return true;
                 else
@@ -41,6 +42,7 @@ namespace CamadaDados
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 2);
                 conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@nomeStatus", status.nomeStatus);
+                conexao.Comando.Parameters.AddWithValue("@Finalizador", status.finalizador);
                 conexao.Comando.Parameters.AddWithValue("@idStatus", status.idStatus);
 
                 if (conexao.ExecuteNonQuery() == 1)

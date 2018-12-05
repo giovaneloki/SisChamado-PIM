@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div>
+    <form id="formAdd">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Nome do Nivel</label>
+                <input type="text" id="vNomeNivel" class="form-control" value="@Model.nomeNivel" />
+                <input type="hidden" id="vIdNivel" value="@Model.idNivel" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label>Peso</label>
+                <input type="text" id="vPesoNivel" class="form-control" value="@Model.peso"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary" value="Cadastrar" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $("#formAdd").on("submit", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "../Nivel/Edit",
+            type: "POST",
+            data: {
+                "vNivel.nomeNivel": $("#vNomeNivel").val(),
+                "vNivel.idNivel": $("#vIdNivel").val(),
+                "vNivel.peso": $("#vPesoNivel").val()
+            },
+            async: false,
+            success: function (data) {
+                if (data == "True") {
+                    alert("Cadastro Atualizado");
+                    $("#btnModal").click();
+                    location.reload();
+                } else {
+                    alert("Erro ao Atualizar");
+                }
+            }
+        });
+    });
+</script>

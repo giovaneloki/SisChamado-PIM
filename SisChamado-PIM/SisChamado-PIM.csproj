@@ -214,6 +214,16 @@
     <Content Include="Views\Nivel\Index.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\Perfil\Add.cshtml" />
+    <Content Include="Views\Perfil\Edit.cshtml" />
+    <Content Include="Views\Tipo\Add.cshtml" />
+    <Content Include="Views\Tipo\Edit.cshtml" />
+    <Content Include="Views\Nivel\Add.cshtml" />
+    <Content Include="Views\Nivel\Edit.cshtml" />
+    <Content Include="Views\Status\Add.cshtml" />
+    <Content Include="Views\Status\Edit.cshtml" />
+    <Content Include="Views\Usuario\Add.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

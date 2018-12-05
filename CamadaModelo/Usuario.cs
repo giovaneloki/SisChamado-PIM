@@ -18,7 +18,7 @@ namespace CamadaModelo
             
         public Usuario()
         {
-
+            Perfil = new Perfil();
         }
 
         public Usuario(SqlDataReader reader)

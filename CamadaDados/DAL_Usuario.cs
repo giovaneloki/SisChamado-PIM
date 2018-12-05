@@ -65,7 +65,7 @@ namespace CamadaDados
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 3);
                 conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
                 conexao.Comando.Parameters.AddWithValue("@idUsuario", usuario.idUsuario);
-
+                conexao.Comando.Parameters.AddWithValue("@FlAtivo", false);
                 if (conexao.ExecuteNonQuery() == 1)
                     return true;
                 else

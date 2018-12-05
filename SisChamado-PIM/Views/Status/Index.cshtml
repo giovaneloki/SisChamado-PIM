@@ -2,16 +2,75 @@
 @{
     Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link href="~/Content/datatables.min.css" rel="stylesheet" />
+<script src="~/Scripts/datatables.min.js"></script>
+<div class="divStatus">
+    <button class="btn btn-primary" id="btnStatus">
+        <span class="glyphicon glyphicon-plus"><font style="font-family:Verdana; word-spacing:1px;">&nbsp;Novo Status</font></span>
+    </button>
+    <br />
+    <br />
+    <div>
+        <table class="table table-condensed" id="tbStatus">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome Status</th>
+                    <th>Finalizador</th>
+                    <th>Ações</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    string finalizador = "";
+                    if (item.finalizador)
+                    {
+                        finalizador = "Sim";
+                    }
+                    else
+                    {
+                        finalizador = "Não";
+                    }
+                    <tr>
+                        <td>@item.idStatus</td>
+                        <td>@item.nomeStatus</td>
+                        <td>@finalizador</td>
+                        <td><button class="btn btn-primary" title="Atualizar" onclick="AlterarStatus(@item.idStatus)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                        <td><button class="btn btn-primary" title="Excluir" onclick="RemoverStatus(@item.idStatus)"><span class="glyphicon glyphicon-trash"></span></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-</body>
-</html>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#tbStatus").DataTable();
+    });
+
+    $("#btnStatus").click(function () {
+        $(".divStatus").load("../Status/Add");
+    })
+
+    function RemoverStatus(idStatus) {
+        $.post("../Status/Delete", { idStatus: idStatus }, function (data) {
+            if (data == "True") {
+                alert("Status removido");
+                $("#btnModal").click();
+                location.reload();
+            } else {
+                alert("Erro ao remover");
+            }
+        });
+    }
+
+    function AlterarStatus(idStatus) {
+        $(".divStatus").load("../Status/Edit?idStatus=" + idStatus);
+    }
+</script>

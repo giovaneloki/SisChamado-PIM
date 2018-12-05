@@ -1,0 +1,79 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div>
+    <form id="formAdd">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Nome do Usuario</label>
+                <input type="text" id="vNomeUsuario" class="form-control" value="@Model.nomeUsuario" required/>
+                <input type="hidden" id="vIdUsuario" value="@Model.idUsuario" class="form-control" required/>
+            </div>
+            <div class="col-md-4">
+                <label>Perfil</label>
+                <select class="form-control" id="vPerfil" required>
+                    @foreach (var item in ViewBag.Perfil)
+                    {
+                        if (item.idPerfil == Model.Perfil.idPerfil)
+                        {
+                            <option value="@item.idPerfil" selected>@item.nomePerfil</option>
+                        }
+                        else
+                        {
+                            <option value="@item.idPerfil">@item.nomePerfil</option>
+                        }
+                    }
+                </select>
+                @*<input type="text" id="vNomeUsuario" class="form-control" value="@Model.nomeUsuario" />*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label>Login do Usuario</label>
+                <input type="text" id="vLoginUsuario" class="form-control" value="@Model.loginUsuario" required/>
+            </div>
+            <div class="col-md-4">
+                <label>Senha</label>
+                <input type="password" id="vSenhaUsuario" class="form-control" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary" value="Atualizar" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $("#formAdd").on("submit", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "../Usuario/Edit",
+            type: "POST",
+            data: {
+                "vUsuario.nomeUsuario": $("#vNomeUsuario").val(),
+                "vUsuario.idUsuario": $("#vIdUsuario").val(),
+                "vPerfil.idPerfil": $("#vPerfil").val(),
+                "vUsuario.loginUsuario": $("#vLoginUsuario").val(),
+                "vUsuario.senhaUsuario": $("#vSenhaUsuario").val()
+            },
+            async: false,
+            success: function (data) {
+                if (data == "True") {
+                    alert("Cadastro Atualizado");
+                    $("#btnModal").click();
+                    location.reload();
+                } else {
+                    alert("Erro ao Atualizar");
+                }
+            }
+        });
+    });
+</script>

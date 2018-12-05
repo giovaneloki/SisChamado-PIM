@@ -2,16 +2,64 @@
 @{
     Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link href="~/Content/datatables.min.css" rel="stylesheet" />
+<script src="~/Scripts/datatables.min.js"></script>
+<div class="divTipo">
+    <button class="btn btn-primary" id="btnTipo">
+        <span class="glyphicon glyphicon-plus"><font style="font-family:Verdana; word-spacing:1px;">&nbsp;Novo Tipo</font></span>
+    </button>
+    <br />
+    <br />
+    <div>
+        <table class="table table-condensed" id="tbTipo">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome Tipo</th>
+                    <th>Ações</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.idTipo</td>
+                        <td>@item.nomeTipo</td>
+                        <td><button class="btn btn-primary" title="Atualizar" onclick="AlterarTipo(@item.idTipo)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                        <td><button class="btn btn-primary" title="Excluir" onclick="RemoverTipo(@item.idTipo)"><span class="glyphicon glyphicon-trash"></span></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-</body>
-</html>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#tbTipo").DataTable();
+    });
+
+    $("#btnTipo").click(function () {
+        $(".divTipo").load("../Tipo/Add");
+    })
+
+    function RemoverTipo(idTipo) {
+        $.post("../Tipo/Delete", { idTipo: idTipo }, function (data) {
+            if (data == "True") {
+                alert("Tipo removido");
+                $("#btnModal").click();
+                location.reload();
+            } else {
+                alert("Erro ao remover");
+            }
+        });
+    }
+
+    function AlterarTipo(idTipo) {
+        $(".divTipo").load("../Tipo/Edit?idTipo=" + idTipo);
+    }
+</script>

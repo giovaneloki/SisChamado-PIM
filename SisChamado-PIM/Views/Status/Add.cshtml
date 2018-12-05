@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div>
+    <form id="formAdd">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Nome do Status</label>
+                <input type="text" id="vNomeStatus" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label>Finalizador?</label><br />
+                <input type="checkbox" id="vFinalizadorStatus"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary" value="Cadastrar" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $("#formAdd").on("submit", function (e) {
+        e.preventDefault();
+        var finalizador = document.getElementById("vFinalizadorStatus");
+        $.ajax({
+            url: "../Status/Add",
+            type: "POST",
+            data: {
+                "vStatus.nomeStatus": $("#vNomeStatus").val(),
+                "vStatus.finalizador": finalizador.checked
+            },
+            async: false,
+            success: function (data) {
+                if (data == "True") {
+                    alert("Cadastro Realizado");
+                    $("#btnModal").click();
+                    location.reload();
+                } else {
+                    alert("Erro ao cadastrar");
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div>
+    <form id="formAdd">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Nome do Status</label>
+                <input type="text" id="vNomeStatus" class="form-control" value="@Model.nomeStatus" />
+                <input type="hidden" id="vIdStatus" value="@Model.idStatus" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label>Finalizador?</label><br />
+                <input type="checkbox" id="vFinalizadorStatus"
+                       @if (Model.finalizador) { <text>
+                       checked="checked"
+                       </text>  } />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary" value="Cadastrar" if
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $("#formAdd").on("submit", function (e) {
+        var finalizador = document.getElementById("vFinalizadorStatus");
+        e.preventDefault();
+        $.ajax({
+            url: "../Status/Edit",
+            type: "POST",
+            data: {
+                "vStatus.nomeStatus": $("#vNomeStatus").val(),
+                "vStatus.idStatus": $("#vIdStatus").val(),
+                "vStatus.finalizador": finalizador.checked
+            },
+            async: false,
+            success: function (data) {
+                if (data == "True") {
+                    alert("Cadastro Atualizado");
+                    $("#btnModal").click();
+                    location.reload();
+                } else {
+                    alert("Erro ao Atualizar");
+                }
+            }
+        });
+    });
+</script>

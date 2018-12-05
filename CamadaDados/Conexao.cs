@@ -77,7 +77,7 @@ namespace CamadaDados
                 var dataReader = this.Comando.ExecuteNonQuery();
                 return dataReader;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 this.Dispose();
                 return 0;
