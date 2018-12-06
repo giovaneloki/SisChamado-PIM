@@ -34,7 +34,7 @@ namespace CamadaModelo
         }
         public Chamado(SqlDataReader reader)
         {
-            idChamado = reader["idChamado"] == DBNull.Value ? 0 : Convert.ToInt16(reader["idChamdo"]);
+            idChamado = reader["idChamado"] == DBNull.Value ? 0 : Convert.ToInt16(reader["idChamado"]);
             dataSolicitada = reader["dataSolicitada"] == DBNull.Value ? DateTime.MinValue : DateTime.Parse(reader["dataSolicitada"].ToString());
             dataInicio = reader["dataInicio"] == DBNull.Value ? DateTime.MinValue : DateTime.Parse(reader["dataInicio"].ToString());
             dataTermino = reader["dataTermino"] == DBNull.Value ? DateTime.MinValue : DateTime.Parse(reader["dataTermino"].ToString());

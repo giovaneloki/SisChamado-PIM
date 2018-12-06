@@ -91,11 +91,11 @@ namespace CamadaDados
                 conexao.Comando.CommandText = "dbo.pr_ManterChamado";
                 conexao.Comando.Parameters.AddWithValue("@Funcao", 4);
                 conexao.Comando.CommandType = System.Data.CommandType.StoredProcedure;
-               conexao.Comando.Parameters.AddWithValue("@fkStatus", vChamado.Status.idStatus);
-                    conexao.Comando.Parameters.AddWithValue("@fkUsuarioSolicitante", vChamado.usuarioSolicitante.idUsuario);
-                    conexao.Comando.Parameters.AddWithValue("@fkUsuarioAtendeu", vChamado.usuarioAtendimento.idUsuario);
-                    conexao.Comando.Parameters.AddWithValue("@fkNivel", vChamado.Nivel.idNivel);
-                    conexao.Comando.Parameters.AddWithValue("@fkTipo", vChamado.Tipo.idTipo);
+                conexao.Comando.Parameters.AddWithValue("@idStatus", vChamado.Status.idStatus);
+                conexao.Comando.Parameters.AddWithValue("@usuarioSolicitante", vChamado.usuarioSolicitante.idUsuario);
+                conexao.Comando.Parameters.AddWithValue("@usuarioAtendimento", vChamado.usuarioAtendimento.idUsuario);
+                conexao.Comando.Parameters.AddWithValue("@idNivel", vChamado.Nivel.idNivel);
+                conexao.Comando.Parameters.AddWithValue("@idTipo", vChamado.Tipo.idTipo);
                 List<Chamado> lista = new List<Chamado>();
                 var reader = conexao.ExecuteReader();
                 while (reader.Read())

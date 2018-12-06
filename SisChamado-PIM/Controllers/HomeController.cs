@@ -108,5 +108,14 @@ namespace SisChamado_PIM.Controllers
                 return Redirect("../Home/Usuario");
             }
         }
+
+        [HttpGet]
+        public JsonResult ListarPorUsuario()
+        {
+            Usuario vUsuario = (Usuario)Session["usuarioLogado"];
+            var vLista = new DAL_Chamado(MvcApplication.strConexao).ListaChamados(new Chamado());
+
+            return new JsonResult() { Data = vLista.Where(c => (c.usuarioSolicitante.idUsuario == vUsuario.idUsuario)), JsonRequestBehavior = JsonRequestBehavior.AllowGet, MaxJsonLength = Int32.MaxValue };
+        }
     }
 }

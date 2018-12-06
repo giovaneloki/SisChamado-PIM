@@ -88,7 +88,11 @@
         $(".modal-body").load("../Tipo/Index");
         $("#btnModal").click();
     }
-
+    function AbrirChamado(idChamado) {
+        $(".modal-title").html("Chamado");
+        $(".modal-body").load("../Chamado/Edit?idChamado=" + idChamado);
+        $("#btnModal").click();
+    }
     $(document).ready(function () {
         ListarChamadosAbertos();
     })
@@ -96,11 +100,11 @@
     function ListarChamadosAbertos() {
         $.ajax({
             url: "../Chamado/ListarChamadosAbertos",
-            type: "POST",
+            type: "GET",
             async: false,
             success: function (data) {
                 var html = "<h4>Chamados Abertos</h4>";
-                html += "<table id='tbChamado'>";
+                html += "<table id='tbChamado' style='font-size:11px;'>";
                 html += "<thead>";
                 html += "<tr>";
                 html += "<th>Id Chamado</th>";
@@ -119,18 +123,18 @@
                 html += "<tbody>";
 
                 $(data).each(function (i) {
-                    html += "<tr>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
-                    html += "<td>" + data[i] + "</td>";
+                    html += "<tr onclick='AbrirChamado(" + data[i].idChamado + ")' style='cursor:pointer'>";
+                    html += "<td>" + data[i].idChamado + "</td>";
+                    html += "<td>" + fnDataSqlToBr(data[i].dataSolicitada) + "</td>";
+                    html += "<td>" + fnDataSqlToBr(data[i].dataInicio) + "</td>";
+                    html += "<td>" + fnDataSqlToBr(data[i].dataTermino) + "</td>";
+                    html += "<td>" + data[i].usuarioSolicitante.nomeUsuario + "</td>";
+                    html += "<td>" + data[i].usuarioAtendimento.nomeUsuario + "</td>";
+                    html += "<td>" + data[i].Tipo.nomeTipo + "</td>";
+                    html += "<td>" + data[i].Nivel.nomeNivel + "</td>";
+                    html += "<td>" + data[i].Status.nomeStatus + "</td>";
+                    html += "<td>" + data[i].descricaoSolicitacao + "</td>";
+                    html += "<td>" + data[i].descricaoResolucao + "</td>";
                     html += "</tr>";
                 });
                 html += "</tbody>";
@@ -140,5 +144,15 @@
         });
 
         $("#tbChamado").DataTable();
+    }
+
+    function fnDataSqlToBr(data) {
+
+        var myDate = new Date(data.match(/\d+/)[0] * 1);
+        var novaData = "";
+        novaData = myDate.getDate() + "/" + myDate.getMonth() + "/" + myDate.getFullYear();// + " " + myDate.getHours() + ":" + myDate.getMinutes();
+        //console.log(myDate);
+        //console.log(myDate.getDate() + "/" + myDate.getMonth() + "/" + myDate.getFullYear();// + "// " + myDate.getHours() + ":" + myDate.getMinutes());
+        return novaData;
     }
 </script>

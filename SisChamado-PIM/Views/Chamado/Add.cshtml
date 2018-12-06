@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div>
+    <form id="formAdd">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Nível</label>
+                <select id="vNivel" class="form-control" required>
+                    @foreach(var item in ViewBag.Nivel)
+                    {
+                        <option value="@item.idNivel">@item.nomeNivel</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Tipo</label>
+                <select id="vTipo" class="form-control" required>
+                    @foreach (var item in ViewBag.Tipo)
+                    {
+                        <option value="@item.idTipo">@item.nomeTipo</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Descrição do Problema</label>
+                <textarea id="descricaoSolicitacao" class="form-control" rows="5" required></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary" value="Cadastrar" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $("#formAdd").on("submit", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "../Chamado/Add",
+            type: "POST",
+            data: {
+                "vNivel.idNivel": $("#vNivel").val(),
+                "vChamado.descricaoSolicitacao": $("#descricaoSolicitacao").val(),
+                "vTipo.idTipo": $("#vTipo").val()
+            },
+            async: false,
+            success: function (data) {
+                if (data == "True") {
+                    alert("Cadastro Realizado");
+                    $("#btnModal").click();
+                    location.reload();
+                } else {
+                    alert("Erro ao cadastrar");
+                }
+            }
+        });
+    });
+</script>

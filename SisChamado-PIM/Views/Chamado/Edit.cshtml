@@ -1,0 +1,127 @@
+﻿
+@{
+    Layout = null;
+
+    var usuario = (CamadaModelo.Usuario)Session["usuarioLogado"];
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div>
+    <form id="formAdd">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Data Inicio</label>
+                <input type="datetime" id="vDataInicio" class="form-control" value="@Model.dataInicio" required />
+            </div>
+            <input type="hidden" id="vDataSolicitada" value="@Model.dataSolicitada" />
+            <input type="hidden" id="vIdChamado" value="@Model.idChamado" />
+            <div class="col-md-4">
+                <label>Data Fim</label>
+                <input type="datetime" id="vDataFim" class="form-control" value="@Model.dataTermino" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label>Nível</label>
+                <select id="vNivel" class="form-control" required>
+                    @foreach (var item in ViewBag.Nivel)
+                    {
+                        if (item.idNivel == Model.Nivel.idNivel)
+                        {
+                            <option value="@item.idNivel" selected>@item.nomeNivel</option>
+                        }
+                        else
+                        {
+                            <option value="@item.idNivel">@item.nomeNivel</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Tipo</label>
+                <select id="vTipo" class="form-control" required>
+                    @foreach (var item in ViewBag.Tipo)
+                    {
+                        if (item.idTipo == Model.Tipo.idTipo)
+                        {
+                            <option value="@item.idTipo" selected>@item.nomeTipo</option>
+                        }
+                        else
+                        {
+                            <option value="@item.idTipo">@item.nomeTipo</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Status</label>
+                <select id="vStatus" class="form-control" required>
+                    @foreach (var item in ViewBag.Status)
+                    {
+                        if (item.idStatus == Model.Status.idStatus)
+                        {
+                            <option value="@item.idStatus" selected>@item.nomeStatus</option>
+                        }
+                        else
+                        {
+                            <option value="@item.idStatus">@item.nomeStatus</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Descrição do Problema</label>
+                <textarea id="descricaoSolicitacao" class="form-control" rows="5" required readonly>@Model.descricaoSolicitacao</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Descrição da Solução</label>
+                <textarea id="descricaoSolucao" class="form-control" rows="5" required>@Model.descricaoResolucao</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary" value="Salvar" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $("#formAdd").on("submit", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "../Chamado/Edit",
+            type: "POST",
+            data: {
+                "vNivel.idNivel": $("#vNivel").val(),
+                "vChamado.descricaoSolicitacao": $("#descricaoSolicitacao").val(),
+                "vChamado.descricaoResolucao": $("#descricaoSolucao").val(),
+                "vTipo.idTipo": $("#vTipo").val(),
+                "vChamado.idChamado": $("#vIdChamado").val(),
+                "vChamado.dataSolicitada": $("#vDataSolicitada").val(),
+                "vChamado.dataInicio": $("#vDataInicio").val(),
+                "vChamado.dataTermino": $("#vDataFim").val(),
+                "vSolicitante.idUsuario": '@Model.usuarioSolicitante.idUsuario',
+                "vAtendimento": "@usuario.idUsuario",
+                "vStatus.idStatus": $("#vStatus").val()
+            },
+            async: false,
+            success: function (data) {
+                if (data == "True") {
+                    alert("Cadastro Atualizar");
+                    $("#btnModal").click();
+                    location.reload();
+                } else {
+                    alert("Erro ao atualizar");
+                }
+            }
+        });
+    });
+</script>
